@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NowShowingMovieCollectionViewCell" customModule="MovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="137" height="183"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="137" height="183"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XXt-X6-PUK">
+                        <rect key="frame" x="0.0" y="0.0" width="137" height="183"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="XXt-X6-PUK" secondAttribute="bottom" id="9UW-CS-ica"/>
+                <constraint firstItem="XXt-X6-PUK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ISG-IO-Ktv"/>
+                <constraint firstItem="XXt-X6-PUK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JQS-ub-Y5D"/>
+                <constraint firstAttribute="trailing" secondItem="XXt-X6-PUK" secondAttribute="trailing" id="U1c-5N-XhC"/>
+            </constraints>
+            <size key="customSize" width="137" height="183"/>
+            <connections>
+                <outlet property="imageView" destination="XXt-X6-PUK" id="ctj-kM-2yH"/>
+            </connections>
+            <point key="canvasLocation" x="81.884057971014499" y="136.94196428571428"/>
+        </collectionViewCell>
+    </objects>
+</document>
