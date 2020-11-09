@@ -19,10 +19,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(NowShowingMovieCollectionViewCell().NowShowingNib(), forCellWithReuseIdentifier: "NowShowingMovieCollectionViewCell")
+        tblView.register(PopularTableViewCell().popularMoviesNib(), forCellReuseIdentifier: "PopularTableViewCell")
         apiHandler.fetchData(type: MovieModel.self, contentType: "now_playing")
         apiHandler.fetchData(type: MovieModel.self, contentType: "popular")
 
-        apiHandler.closure = {
+        apiHandler.closureForNowShowing = {
             (data, response, error) in
             let moviesArray = data as! MovieModel
             guard let array = moviesArray.results else { return }
@@ -30,6 +31,18 @@ class ViewController: UIViewController {
                 self.nowShowingMovies.append(contentsOf: array)
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                }
+            }
+        }
+        
+        apiHandler.closureForPopular = {
+            (data, response, error) in
+            let moviesArray = data as! MovieModel
+            guard let array = moviesArray.results else { return }
+            DispatchQueue.global().async {
+                self.mostPopularMovies.append(contentsOf: array)
+                DispatchQueue.main.async {
+                    self.tblView.reloadData()
                 }
             }
         }
@@ -44,6 +57,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowShowingMovieCollectionViewCell", for: indexPath) as! NowShowingMovieCollectionViewCell
+       
         cell.configureCell(posterPath: nowShowingMovies[indexPath.row].poster_path ?? "")
         return cell
     }
@@ -66,7 +80,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PopularTableViewCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PopularTableViewCell") as! PopularTableViewCell
+        let movie_name = mostPopularMovies[indexPath.row].title
+        let rel_date = mostPopularMovies[indexPath.row].release_date
+//        let duration = mostPopularMovies[indexPath.row]
+        let poster_path = mostPopularMovies[indexPath.row].title
+
+        cell.configureCell(posterPath: poster_path ?? "", movie_name: movie_name ?? "", rel_date: rel_date ?? "")
+        return cell
     }
     
     
